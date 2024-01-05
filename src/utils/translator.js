@@ -13,7 +13,7 @@ const Translator = () => {
     // Define the function for Google Translate initialization
     window.googleTranslateElementInit = function () {
       new window.google.translate.TranslateElement(
-        { pageLanguage: "hin" },
+        { pageLanguage: "en" },
         "google_translate_element"
       );
     };
@@ -30,7 +30,6 @@ const Translator = () => {
 
   return (
     <div>
-      {/* This is where the Google Translate widget will be rendered */}
       <div id="google_translate_element"></div>
     </div>
   );

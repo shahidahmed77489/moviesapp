@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { fetchTrailerData } from "../utils/showTrailerSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 const TopCaste = ({ id }) => {
-  const dispatch = useDispatch();
   const [isTopCaste, setTopCaste] = useState([]);
   const getTopCaste = async () => {
     const response = await axios.get(
@@ -14,15 +11,11 @@ const TopCaste = ({ id }) => {
   };
   useEffect(() => {
     getTopCaste();
-    dispatch(fetchTrailerData());
   }, []);
-  const { storeTrailerData } = useSelector((state) => state.trailerdata);
-  console.log(storeTrailerData);
 
-  console.log(id);
   return (
     <div className="text-white my-10">
-      <h2 className="m-5 text-4xl text-red-400">Top Cast</h2>
+      <h2 className="m-5 text-4xl text-colour">Top Cast</h2>
       <div className="flex justify-evenly">
         {isTopCaste?.cast?.slice(0, 6)?.map((item, index) => {
           return (
@@ -34,7 +27,7 @@ const TopCaste = ({ id }) => {
                   alt=""
                 />
                 <p className="text-xl font-semibold">{item?.name}</p>
-                <p className="text-red-400 italic">{item?.character}</p>
+                <p className="text-colour italic">{item?.character}</p>
               </div>
             </React.Fragment>
           );

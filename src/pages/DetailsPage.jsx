@@ -3,8 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CiPlay1 } from "react-icons/ci";
 import TopCaste from "../Components/TopCaste";
+import { fetchSimiliarMovies } from "../utils/similiarSlice";
+import { fetchRecommendMovies } from "../utils/recommendSlice";
+import { useDispatch, useSelector } from "react-redux";
+import Movies from "../Components/Movies";
 
 const DetailsPage = () => {
+  const dispatch = useDispatch();
   const [isDetails, setDetails] = useState([]);
   const [isVideos, setVideos] = useState([]);
   const [isModal, setModal] = useState(false);
@@ -21,7 +26,12 @@ const DetailsPage = () => {
   };
   useEffect(() => {
     fetchMovieDetails();
-  }, []);
+    dispatch(fetchSimiliarMovies(id));
+    dispatch(fetchRecommendMovies());
+  }, [id]);
+  const { similiarMoviesData } = useSelector((state) => state.similiarData);
+  const { recommendMoviesData } = useSelector((state) => state.recommendData);
+  console.log(similiarMoviesData);
   const backgroundImageStyle = {
     backgroundImage: `url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${isDetails?.backdrop_path}')`,
     backgroundSize: "cover",
@@ -46,6 +56,7 @@ const DetailsPage = () => {
         <>
           <div className="w-[600px] h-[400px] border-cyan-200 border absolute  z-50 right-[25%] top-[10%]">
             <iframe
+              title="Unique Title"
               width="598"
               height="398"
               src={`https://www.youtube.com/embed/${isVideos?.results[9]?.key}?autoplay=1`}
@@ -71,19 +82,22 @@ const DetailsPage = () => {
               alt=""
             />
           </div>
-          <div className="text-white pb-20">
+          <div className="text-white pb-20 w-[50%]">
             <h2 className="text-4xl font-semibold my-3">{isDetails?.title}</h2>
             <p>
               {isDetails?.release_date} • <span>{isDetails?.runtime}min</span>
             </p>
-            <div className="flex items-center gap-5 my-3">
+            <div className="flex items-center gap-2 my-3">
               <p>Rating :</p>
-              <p className="w-10 h-10 rounded-full border-red-500 border-2 flex justify-center items-center">
+              <p className="w-10 h-10 rounded-full border-colour border-2 flex justify-center items-center">
                 {isDetails?.vote_average?.toFixed(1)}
               </p>
             </div>
 
-            <button className="flex items-center gap-3" onClick={showModal}>
+            <button
+              className="flex items-center gap-3 border-2 border-colour px-2 py-1 rounded hover:colour my-3"
+              onClick={showModal}
+            >
               <span>Play Trailer</span>
               <CiPlay1 />
             </button>
@@ -95,6 +109,11 @@ const DetailsPage = () => {
       </div>
       <div>
         <TopCaste id={id} />
+        <Movies data={similiarMoviesData} movieHeader={"Similiar Movies"} />
+        <Movies
+          data={recommendMoviesData}
+          movieHeader={"Recommendation Movies"}
+        />
       </div>
     </>
   );
