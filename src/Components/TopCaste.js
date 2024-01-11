@@ -16,7 +16,7 @@ const TopCaste = ({ id }) => {
   return (
     <div className="text-white my-10">
       <h2 className="m-5 text-4xl text-colour">Top Cast</h2>
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly flex-wrap">
         {isTopCaste?.cast?.slice(0, 6)?.map((item, index) => {
           return (
             <React.Fragment key={index}>

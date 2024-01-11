@@ -1,45 +1,40 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import React from "react";
+import { AiOutlineLogout } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { userloggedOut } from "../utils/authSlice";
 const Header = () => {
-  const [isLogin, setLogin] = useState(false);
+  const disaptch = useDispatch();
   const navigate = useNavigate();
-
-  const changeUserHandler = () => {
-    setLogin((prevLogin) => !prevLogin);
-    const route = isLogin ? "/" : "/signup";
-    navigate(route);
-    console.log(isLogin);
+  const logoutHandler = () => {
+    disaptch(userloggedOut());
+    window.sessionStorage.removeItem("userAuthentication");
+    navigate("/");
   };
-
   return (
     <div className="lg:px-20 mx-auto absolute top-0 w-full z-20 shadow-sm shadow-white bg-black py-5 px-2">
       <div className="relative z-10 flex justify-between  items-center">
         <div>
           <h2 className="lg:text-4xl sm:text-3xl text-colour font-bold">
-            Movies App
+            Movies Flix
           </h2>
         </div>
-        <div className="flex">
-          <div className="border border-slate-500 rounded text-center px-3 mr-4 pt-1">
-            <span>
-              <i className="fa-solid fa-language text-white"></i>
-            </span>
-            <select className="bg-transparent text-white outline-none xs:px-0 xs:text-[10px] md:text-[16px]">
-              <option value="English" className="text-black px-3 pt-4">
-                English
-              </option>
-              <option value="Hindi" className="text-black px-3 pt-1">
-                Hindi
-              </option>
-            </select>
-            {/* <Translator /> */}
-          </div>
+        <div className="flex items-center gap-4">
+          <Link to={"/movie"}>
+            <h2 className="text-colour text-xl font-semibold lg:text-xl xs:text-[15px] sm:text-xl md:text-xl">
+              Movie
+            </h2>
+          </Link>
+          <Link to={"/tv"}>
+            <h2 className="text-colour text-xl font-semibold lg:text-xl xs:text-[15px] sm:text-xl md:text-xl">
+              TV
+            </h2>
+          </Link>
           <button
-            className="bg-colour text-white font-semibold px-4 rounded xs:text-[10px] md:text-[16px]"
-            onClick={changeUserHandler}
+            className="text-colour text-xl font-semibold lg:text-xl xs:text-[15px] sm:text-xl md:text-xl"
+            onClick={logoutHandler}
           >
-            {isLogin ? "Sign In" : "Sign Up"}
+            <AiOutlineLogout />
           </button>
         </div>
       </div>

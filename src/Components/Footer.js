@@ -15,7 +15,7 @@ const Footer = () => {
           <li className="hover:text-red-500 cursor-pointer">Blog</li>
           <li className="hover:text-red-500 cursor-pointer">FAQs</li>
         </ul>
-        <p>
+        <p className="hidden md:block">
           This movie app is a user-friendly, responsive platform designed for
           movie enthusiasts. It provides real-time access to trending movies and
           TV shows. The app fetches data from APIs to display details such as

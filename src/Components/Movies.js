@@ -11,7 +11,7 @@ const Movies = ({ data, movieHeader }) => {
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 3,
-    // arrows: true,
+    arrows: true,
     centerMode: true,
     autoplay: false,
     speed: 2000,
@@ -66,7 +66,7 @@ const Movies = ({ data, movieHeader }) => {
                     onClick={() => movieCard(item?.id)}
                   >
                     <img
-                      className=" rounded ab w-[200px] shadow-md shadow-gray-500 mb-2"
+                      className=" rounded ab md:w-[200px] xs:w-[150px] shadow-md shadow-gray-500 mb-2"
                       src={`https://image.tmdb.org/t/p/w220_and_h330_face${item.poster_path}`}
                       alt="error"
                     />

@@ -31,15 +31,18 @@ const MoviesFlix = () => {
 
   return (
     <>
-      <Header />
+      <div className="absolute top-0 w-full">
+        <Header />
+      </div>
+
       <div className="top-0  text-white relative">
         <div className="bg-black opacity-70 w-full h-full absolute top-0 z-10"></div>
         <iframe
           className="lg:w-full lg:h-full sm:h-[70vh] sm:w-full xs:w-full xs:h-[70vh] aspect-video relative"
-          src="https://www.youtube.com/embed/onrO_8Ruah8?si=FC9iV_cDO2sZhsYJ&autoplay=1&mute=1&reapeat=1"
+          src="https://www.youtube.com/embed/uC9qU3X1JgM?si=Wv9ejXTP8Lq6Ct1E&autoplay=1&mute=1&reapeat=1"
         ></iframe>
         <div className="absolute top-[30%] xs:top-[30%] text-center z-20 w-full mx-auto]">
-          <h1 className="text-2xl font-semibold text-colour sm:text-5xl md:text-6xl">
+          <h1 className="text-2xl font-semibold text-colour sm:text-5xl md:text-7xl">
             Welcome.
           </h1>
           <h2 className="md:text-2xl text-colour ">
@@ -49,11 +52,11 @@ const MoviesFlix = () => {
             <input
               type="text"
               placeholder="Search for a movie, tv show....."
-              className="py-2 xs:py-1 px-4 rounded outline-none text-colour w-full lg:py-2"
+              className="py-2 xs:py-1 px-4  outline-none text-colour w-full lg:py-3 bg-gray rounded-full"
               ref={inputSearch}
             />
             <button
-              className="absolute top-0 -right-1   bg-colour xs:py-1  lg:py-2 px-2 py-2"
+              className="absolute top-0 -right-1  rounded-radius bg-colour xs:py-1  lg:py-3 lg:px-5 font-semibold px-2 py-2"
               onClick={movieSearchBtn}
             >
               search

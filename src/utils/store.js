@@ -6,6 +6,9 @@ import topRatedReducer from "./topratedSlice";
 import similiarReducer from "./similiarSlice";
 import recommendReducer from "./recommendSlice";
 import searchMovieReducer from "./searchMovieSlice";
+import movieReducer from "./movieSlice";
+import tvReducer from "./tvSlice";
+import authReducer from "./authSlice";
 const store = configureStore({
   reducer: {
     openLogin: openLoginPageReducer,
@@ -15,6 +18,9 @@ const store = configureStore({
     similiarData: similiarReducer,
     recommendData: recommendReducer,
     searchData: searchMovieReducer,
+    movieData: movieReducer,
+    tvData: tvReducer,
+    authData: authReducer,
   },
 });
 

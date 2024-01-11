@@ -20,6 +20,9 @@ module.exports = {
         lgl: "1024px",
         xl: "1280px",
       },
+      borderRadius: {
+        radius: "0 50px 50px 0",
+      },
     },
   },
   plugins: [],

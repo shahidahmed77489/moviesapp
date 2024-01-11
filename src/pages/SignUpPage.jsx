@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import BackgroundImage from "../Components/BackgroundImage";
-import Header from "../Components/Header";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const auth = getAuth(app);
 
 const SignUpPage = () => {
@@ -35,10 +34,7 @@ const SignUpPage = () => {
   return (
     <>
       <BackgroundImage />
-      <div className="absolute top-0 w-full">
-        <Header />
-      </div>
-      <div className="absolute z-10 top-5 left-[30%] min-w-[35%]">
+      <div className="absolute z-10 top-5 md:left-[30%] xs:min-w-full  sml:left-[20%] sml:min-w-[30%] mdl:min-w-[35%]">
         <div className=" h-screen flex items-center justify-center">
           <div className="bg-bgcolor p-12 min-w-full relative z-10">
             <h2 className="text-white text-3xl font-semibold mb-6">Sign Up </h2>
@@ -78,6 +74,12 @@ const SignUpPage = () => {
                 Sign Up
               </button>
             </form>
+            <p className="text-white">
+              Already Have An Account !
+              <Link to={"/"}>
+                <span className="text-colour underline"> SignIn</span>
+              </Link>
+            </p>
           </div>
         </div>
       </div>
