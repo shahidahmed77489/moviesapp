@@ -1,20 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import BackgroundImage from "../Components/BackgroundImage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogin } from "../utils/authSlice";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoMdEye } from "react-icons/io";
 
 const auth = getAuth(app);
 const SignInPage = () => {
+  const [isShow, setShow] = useState(true);
   const navigate = useNavigate();
   const email = useRef(null);
   const password = useRef(null);
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authData);
-  console.log(user);
+
+  const changeVisibleBtn = () => {
+    setShow(!isShow);
+  };
 
   const submitBtn = async (e) => {
     e.preventDefault();
@@ -25,7 +30,6 @@ const SignInPage = () => {
         password.current.value
       );
       if (userLog) {
-        alert("login successful");
         navigate("/moviesFlix");
         dispatch(userLogin(userLog));
         window.sessionStorage.setItem("userAuthentication", true);
@@ -53,14 +57,20 @@ const SignInPage = () => {
                   name="email"
                 />
               </div>
-              <div>
+              <div className="text-white relative">
                 <input
-                  type="text"
+                  type={isShow ? "password" : "text"}
                   placeholder="Password"
-                  className="w-full bg-gray pl-4 py-3 rounded text-white"
+                  className="w-full bg-gray pl-4 py-3 rounded text-white "
                   ref={password}
                   name="password"
                 />
+                <div
+                  className="absolute right-4 top-4"
+                  onClick={changeVisibleBtn}
+                >
+                  {isShow ? <IoMdEye /> : <FaRegEyeSlash />}
+                </div>
               </div>
               <button
                 className="w-full  bg-colour mt-8 mb-4 py-3 rounded font-semibold text-white"

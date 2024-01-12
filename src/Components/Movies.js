@@ -65,11 +65,18 @@ const Movies = ({ data, movieHeader }) => {
                     className="text-white font-semibold hover:scale-110 hover:transition-all duration-700  cursor-pointer "
                     onClick={() => movieCard(item?.id)}
                   >
-                    <img
-                      className=" rounded ab md:w-[200px] xs:w-[150px] shadow-md shadow-gray-500 mb-2"
-                      src={`https://image.tmdb.org/t/p/w220_and_h330_face${item.poster_path}`}
-                      alt="error"
-                    />
+                    <div className="md:w-[200px] xs:w-[150px]">
+                      <img
+                        className=" rounded ab md:w-[200px] xs:w-[150px] shadow-md shadow-gray-500 mb-2"
+                        src={
+                          item.poster_path
+                            ? `https://image.tmdb.org/t/p/w220_and_h330_face${item.poster_path}`
+                            : "https://feb.kuleuven.be/drc/LEER/visiting-scholars-1/image-not-available.jpg/image"
+                        }
+                        alt="error"
+                      />
+                    </div>
+
                     <span className="px-2 text-colour italic ">
                       Rating:{item?.vote_average?.toFixed(1)}
                     </span>

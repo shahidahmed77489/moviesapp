@@ -11,7 +11,7 @@ const TopCaste = ({ id }) => {
   };
   useEffect(() => {
     getTopCaste();
-  }, []);
+  }, [id]);
 
   return (
     <div className="text-white my-10">
@@ -21,11 +21,17 @@ const TopCaste = ({ id }) => {
           return (
             <React.Fragment key={index}>
               <div>
-                <img
-                  className="w-[200px] rounded"
-                  src={`https://image.tmdb.org/t/p/original/${item?.profile_path}`}
-                  alt=""
-                />
+                <div className="w-[200px] h-[330px]">
+                  <img
+                    className="w-full rounded"
+                    src={
+                      item.profile_path
+                        ? `https://image.tmdb.org/t/p/w220_and_h330_face${item.profile_path}`
+                        : "https://feb.kuleuven.be/drc/LEER/visiting-scholars-1/image-not-available.jpg/image"
+                    }
+                    alt=""
+                  />
+                </div>
                 <p className="text-xl font-semibold">{item?.name}</p>
                 <p className="text-colour italic">{item?.character}</p>
               </div>

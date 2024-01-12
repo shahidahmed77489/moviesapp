@@ -32,7 +32,7 @@ const DetailsPage = () => {
   }, [id]);
   const { similiarMoviesData } = useSelector((state) => state.similiarData);
   const { recommendMoviesData } = useSelector((state) => state.recommendData);
-  console.log(similiarMoviesData);
+
   const backgroundImageStyle = {
     backgroundImage: `url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${isDetails?.backdrop_path}')`,
     backgroundSize: "cover",
